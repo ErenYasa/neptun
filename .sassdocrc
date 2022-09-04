@@ -1,0 +1,23 @@
+dest: docs/scss_doc
+theme: default
+shortcutIcon: ./assets/sassdoc.favicon.png
+autofill:
+    - throw
+    - content
+    - require
+display:
+    watermark: true
+groups:
+    basic: Basic
+    mq: mq
+    flex: Flex
+    renk: Renk
+    sayi: Sayi
+    list: List
+    string: String
+--no-update-notifier: true
+description: |
+    BU DOKÜMAN PROJENİN STYLE YAPISIYLA İLGİLİDİR!
+
+    * GEREKLİ YAPILARA SOL MENÜDEN ERİŞEBİLİRSİNİZ
+    * BU SCSS İÇİN BİR TEST DÖKÜMANIDIR

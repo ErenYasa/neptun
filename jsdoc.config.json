@@ -1,0 +1,29 @@
+{
+    "sourceType": "module",
+    "source": {
+        "include": ["src/js/"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "templates": {
+        "cleverLinks": true,
+        "monosapceLinks": true
+    },
+    "opts": {
+        "template": "./node_modules/clean-jsdoc-theme/",
+        "encoding": "utf8",
+        "destination": "./docs/js_doc/",
+        "recurse": true,
+        "verbose": true,
+        "theme_opts": {
+            "default_theme": "dark",
+            "favicon": "./assets/jsdoc.favicon.png",
+            "title": "<div class='sidebar-head'><img src='./assets/jsdoc.favicon.png' class='sidebar-title-icon' /><p>TEST JS DOKÜMANI</p></div>",
+            "create_style": ".sidebar-head { font-size: 2rem }"
+        }
+    },
+    "markdown": {
+        "hardwrap": false,
+        "idInHeadings": true
+    }
+}
