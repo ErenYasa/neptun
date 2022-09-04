@@ -12,3 +12,5 @@ function t(name, lname, age) {
     console.log(`my name is ${name} ${lname} and ${age} years old`);
     return 'user created';
 }
+
+console.log("fire");

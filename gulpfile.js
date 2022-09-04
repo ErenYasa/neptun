@@ -50,9 +50,13 @@ gulp.task('dev', () => {
         port: 3010,
         open: true,
     });
-    // gulp.watch("src/views/pages/**/*.hbs", gulp.parallel("html"))
+    gulp.watch(
+        ['src/views/**/*.hbs', 'src/assets/data/**/*.json'],
+        gulp.parallel('html')
+    );
     gulp.watch('src/js/**/*.js', gulp.parallel('js'));
     gulp.watch('src/scss/**/*.scss', gulp.parallel('scss'));
+    gulp.watch('src/assets/img/**/*', gulp.parallel('img'));
 });
 
 gulp.task('html', () => {
