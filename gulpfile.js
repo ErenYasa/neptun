@@ -136,3 +136,10 @@ gulp.task('jsdoc', function (cb) {
         gulp.dest('./docs/js_doc/assets/')
     );
 });
+
+gulp.task('rcs', function () {
+    return gulp
+        .src(['./dist/css/**/*.css', './dist/js/**/*.js', './dist/**/*.html'])
+        .pipe(rcs())
+        .pipe(gulp.dest('./public/'));
+});
