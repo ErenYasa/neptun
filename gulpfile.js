@@ -7,7 +7,7 @@ const gulp = require('gulp'),
     sourcemap = require('gulp-sourcemaps'),
     rename = require('gulp-rename'),
     gulpData = require('gulp-data'),
-    rcs = require('gulp-rcs');
+    clean = require('gulp-clean');
 
 /**
  * HANDLEBARS - HTML
@@ -26,10 +26,8 @@ const terser = require('gulp-terser'),
  * SCSS
  */
 const sass = require('gulp-sass')(require('sass')),
-    postcss = require('gulp-postcss'),
     prefix = require('gulp-autoprefixer'),
-    cleanCss = require('gulp-clean-css'),
-    decSorter = require('css-declaration-sorter');
+    cleanCss = require('gulp-clean-css');
 
 /**
  * IMAGES
@@ -42,14 +40,17 @@ const minifiyImg = require('gulp-imagemin'),
  */
 const jsdoc = require('gulp-jsdoc3');
 
-gulp.task('dev', () => {
+gulp.task('sync', () => {
     browsersync.init({
         server: {
-            baseDir: 'dist',
+            baseDir: 'dev',
         },
         port: 3010,
         open: true,
     });
+});
+
+gulp.task('watch', () => {
     gulp.watch(
         ['src/views/**/*.hbs', 'src/assets/data/**/*.json'],
         gulp.parallel('html')
@@ -81,17 +82,7 @@ gulp.task('html', () => {
             )
         )
         .pipe(rename({ extname: '.html' }))
-        .pipe(
-            htmlMin({
-                collapseWhitespace: true,
-                removeComments: true,
-                removeCommentsFromCDATA: true,
-                minifyJS: false,
-                minifyCSS: false,
-                ignoreCustomFragments: [/{{[\s\S]*?}}/],
-            })
-        )
-        .pipe(gulp.dest('./dist/'))
+        .pipe(gulp.dest('./dev/'))
         .pipe(browsersync.stream());
 });
 
@@ -99,33 +90,29 @@ gulp.task('js', () => {
     return gulp
         .src('src/js/**/*.js')
         .pipe(sourcemap.init())
-        .pipe(terser())
         .pipe(sourcemap.write())
         .pipe(concat('app.min.js'))
-        .pipe(gulp.dest('./dist/js'))
+        .pipe(gulp.dest('./dev/js'))
         .pipe(browsersync.stream());
 });
 
 gulp.task('scss', () => {
     return gulp
         .src('src/scss/**/*.scss')
-        .pipe(postcss([decSorter({ order: 'concentric-css' })]))
         .pipe(sourcemap.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(cleanCss())
-        .pipe(prefix())
         .pipe(sourcemap.write())
         .pipe(concat('main.min.css'))
-        .pipe(gulp.dest('./dist/css'))
+        .pipe(gulp.dest('./dev/css'))
         .pipe(browsersync.stream());
 });
 
-gulp.task('imgs', () => {
+gulp.task('img', () => {
     return gulp
         .src('src/assets/img/**/*')
         .pipe(convertWebp())
         .pipe(minifiyImg())
-        .pipe(gulp.dest('./dist/img'));
+        .pipe(gulp.dest('./dev/assets/images'));
 });
 
 gulp.task('jsdoc', function (cb) {
@@ -137,9 +124,43 @@ gulp.task('jsdoc', function (cb) {
     );
 });
 
-gulp.task('rcs', function () {
-    return gulp
-        .src(['./dist/css/**/*.css', './dist/js/**/*.js', './dist/**/*.html'])
-        .pipe(rcs())
-        .pipe(gulp.dest('./public/'));
+gulp.task('clear-dev', function () {
+    return gulp.src('./dev/', { read: false }).pipe(clean());
 });
+
+gulp.task('clear-dist', function () {
+    return gulp.src('./dist/', { read: false }).pipe(clean());
+});
+
+gulp.task('build', function () {
+    gulp.src('./dev/**/*.html')
+        .pipe(
+            htmlMin({
+                collapseWhitespace: true,
+                removeComments: true,
+                removeCommentsFromCDATA: true,
+                minifyJS: false,
+                minifyCSS: false,
+                ignoreCustomFragments: [/{{[\s\S]*?}}/],
+            })
+        )
+        .pipe(gulp.dest('./dist/'));
+
+    gulp.src('./dev/**/*.css')
+        .pipe(cleanCss())
+        .pipe(prefix())
+        .pipe(gulp.dest('./dist/css'));
+
+    gulp.src('./dev/**/*.js').pipe(terser()).pipe(gulp.dest('./dist/js'));
+
+    return gulp
+        .src('./dev/**/*(?:jpg|png|jpeg)')
+        .pipe(convertWebp())
+        .pipe(minifiyImg())
+        .pipe(gulp.dest('./dist/assets/images'));
+});
+
+gulp.task(
+    'dev',
+    gulp.series(gulp.parallel('html', 'js', 'scss', 'img', 'sync', 'watch'))
+);
