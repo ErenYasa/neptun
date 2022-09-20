@@ -3,5 +3,10 @@
 /// @author EREN YASA
 /// @group flex
 body {
-    color: black;
+    color: #fff;
+    background-color: #fff;
+
+    @include mobil() {
+        color: black;
+    }
 }
