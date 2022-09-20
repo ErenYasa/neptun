@@ -4,8 +4,14 @@
     "description": "",
     "scripts": {
         "dev": "gulp dev",
+        "dev:watch": "gulp watch",
         "jsdoc": "gulp jsdoc",
         "scssdoc": "sassdoc src/scss",
+        "build": "gulp build",
+        "build:docs": "gulp jsdoc && sassdoc src/scss",
+        "clear:dev": "gulp clear-dev",
+        "clear:dist": "gulp clear-dist",
+        "clear:both": "gulp clear-dev && gulp clear-dist",
         "style": "npx stylelint --fix ./src/scss"
     },
     "keywords": [],
