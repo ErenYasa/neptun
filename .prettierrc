@@ -7,5 +7,22 @@
     "arrowParens": "avoid",
     "endOfLine": "auto",
     "trailingComma": "es5",
-    "printWidth": 100
+    "printWidth": 100,
+    "overrides": [
+        {
+            "files": "*.hbs",
+            "options": {
+                "printWidth": 2000,
+                "tabWidth": 4,
+                "hbsSingleQuote": true,
+                "singleQuote": false
+            }
+        },
+        {
+            "files": "*.scss",
+            "options": {
+                "singleQuote": false
+            }
+        }
+    ]
   }

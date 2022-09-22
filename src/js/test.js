@@ -13,4 +13,8 @@ function t(name, lname, age) {
     return 'user created';
 }
 
-console.log("fire");
+console.log('fire');
+
+function asd() {
+    
+}

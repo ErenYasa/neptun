@@ -1,17 +1,37 @@
 {
-    "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
-    "plugins": ["stylelint-scss"],
+    "plugins": ["stylelint-scss", "stylelint-prettier", "stylelint-order"],
     "rules": {
+        "prettier/prettier": true,
+        "block-no-empty": true,
+        "property-no-unknown": true,
+        "no-duplicate-selectors": true,
+        "indentation": 4,
+        "declaration-block-trailing-semicolon": "always",
+        "length-zero-no-unit": true,
+        "declaration-block-single-line-max-declarations": 0,
+        "comment-empty-line-before": "always",
         "at-rule-no-unknown": null,
+        "declaration-colon-newline-after": "always-multi-line",
+        "no-missing-end-of-source-newline": true,
         "scss/at-rule-no-unknown": true,
-        "scss/dollar-variable-pattern": "^foo",
+        "scss/dollar-variable-pattern": "[a-z]-.+",
         "scss/selector-no-redundant-nesting-selector": true,
-        "at-mixin-argumentless-call-parentheses": "always",
-        "color-hex-case": [
-            "upper", {
-                "message": "BÜYÜK HARF OLMALI"
+        "scss/at-function-named-arguments": "always",
+        "font-weight-notation": "numeric",
+        "max-empty-lines": 2,
+        "property-case": "lower",
+        "unit-case": "lower",
+        "unit-allowed-list": ["rm", "em", "%", "deg"],
+        "color-no-invalid-hex": true,
+        "color-hex-length": "long",
+        "rule-empty-line-before": [
+            "always-multi-line",
+            {
+                "except": ["first-nested"],
+                "ignore": ["after-comment"]
             }
         ]
-
-    }
+    },
+    "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
+    "ignoreFiles": ["dist/*", "dev/*"]
 }
