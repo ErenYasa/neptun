@@ -1,5 +1,5 @@
 {
-    "extends": ["plugin:prettier/recommended", "airbnb"],
+    "extends": ["plugin:prettier/recommended", "airbnb-base"],
     "plugins": ["prettier"],
     "ignorePatterns": ["**/dist/**/*.js", "**/dev/**/*.js"],
     "rules": {
