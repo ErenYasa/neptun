@@ -1,8 +1,14 @@
 {
     "extends": ["plugin:prettier/recommended"],
     "plugins": ["prettier", "airbnb"],
-    "ignorePatterns": ["**/dist/**/*.js", "**/dist/**/*.css", "**/dev/**/*.js", "**/dev/**/*.css"],
+    "ignorePatterns": ["**/dist/**/*.js", "**/dev/**/*.js"],
     "rules": {
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "no-console": 1,
+        "no-unused-vars": 1,
+        "quotes": [2, "single", { "allowTemplateLiterals": true }],
+        "no-empty": [2, { "allowEmptyCatch": true }],
+        "no-dupe-else-if": 2,
+        "no-duplicate-case": 2
     }
 }
