@@ -14,8 +14,7 @@
             "options": {
                 "printWidth": 2000,
                 "tabWidth": 4,
-                "hbsSingleQuote": true,
-                "singleQuote": false
+                "singleQuote": true
             }
         },
         {
@@ -25,4 +24,4 @@
             }
         }
     ]
-  }
+}

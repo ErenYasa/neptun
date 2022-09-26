@@ -1,6 +1,6 @@
 {
-    "extends": ["plugin:prettier/recommended"],
-    "plugins": ["prettier", "airbnb"],
+    "extends": ["plugin:prettier/recommended", "airbnb"],
+    "plugins": ["prettier"],
     "ignorePatterns": ["**/dist/**/*.js", "**/dev/**/*.js"],
     "rules": {
         "prettier/prettier": "error",
