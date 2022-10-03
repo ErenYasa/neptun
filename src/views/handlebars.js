@@ -1,12 +1,13 @@
-const hbs = require("gulp-compile-handlebars");
+const hbs = require('gulp-compile-handlebars');
 
 hbs.Handlebars.registerHelper({
-    upper: function (str) {
+    upper(str) {
         return str.toUpperCase();
     },
-    log: function (data) {
+    log(data) {
+        // eslint-disable-next-line no-console
         console.log(data);
-    }
-})
+    },
+});
 
 module.exports = hbs;

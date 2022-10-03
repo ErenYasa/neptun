@@ -5,13 +5,14 @@
     "scripts": {
         "dev": "gulp dev",
         "dev:watch": "gulp watch",
-        "jsdoc": "gulp jsdoc",
-        "scssdoc": "sassdoc src/scss",
+        "doc:js": "gulp jsdoc",
+        "doc:scss": "sassdoc src/scss",
         "build": "gulp build",
         "build:docs": "gulp jsdoc && sassdoc src/scss",
         "clear:dev": "gulp clear-dev",
         "clear:dist": "gulp clear-dist",
         "clear:both": "gulp clear-dev && gulp clear-dist",
+        "clear:docs": "gulp clear-docs",
         "stylelint": "npx stylelint --config ./.stylelintrc.json --fix ./src/scss",
         "eslint": "eslint '*.{js,json}' --fix",
         "prettier": "prettier --write ."
@@ -31,8 +32,8 @@
         "fs": "^0.0.1-security",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^8.0.0",
+        "gulp-clean": "^0.4.0",
         "gulp-clean-css": "^4.3.0",
-        "gulp-compile-handlebars": "^0.6.1",
         "gulp-concat": "^2.6.1",
         "gulp-data": "^1.3.1",
         "gulp-htmlmin": "^5.0.1",
@@ -60,6 +61,7 @@
         "> 1%"
     ],
     "dependencies": {
-        "gulp-cli": "^2.3.0"
+        "gulp-cli": "^2.3.0",
+        "gulp-compile-handlebars": "^0.6.1"
     }
 }

@@ -1,4 +1,4 @@
-let x = document.querySelector('body');
+const x = document.querySelector('body');
 
 /**
  *
@@ -12,9 +12,7 @@ function t(name, lname, age) {
     console.log(`my name is ${name} ${lname} and ${age} years old`);
     return 'user created';
 }
-
+console.log(x);
 console.log('fire');
 
-function asd() {
-    
-}
+function asd() {}
