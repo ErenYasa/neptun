@@ -5,8 +5,4 @@
 body {
     color: #ffffff;
     background-color: #ffffff;
-
-    @include mobil {
-        color: black;
-    }
 }
